@@ -1,0 +1,63 @@
+{
+  "name": "electron-npm-template",
+  "private": true,
+  "version": "0.1.0",
+  "main": "electron/main.js",
+  "packageManager": "pnpm@8.15.4",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .js,.ts,.tsx",
+    "format": "prettier --write .",
+    "test": "vitest",
+    "clean": "rimraf dist_electron && rimraf dist && rimraf node_modules",
+    "reinstall": "npm run clean && npm install",
+    "electron:build": "vite build && electron-builder",
+    "electron:start": "electron .",
+    "electron:rebuild": "electron-rebuild"
+  },
+  "dependencies": {
+    "electron": "^27.0.0",
+    "node-pty": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "prettier": "^3.4.0",
+    "@vitejs/plugin-react": "^4.4.1",
+    "vite": "^5.0.0",
+    "concurrently": "^8.0.0",
+    "wait-on": "^7.0.0",
+    "electron-builder": "^24.0.0",
+    "electron-rebuild": "^3.0.0",
+    "cross-env": "^7.0.0",
+    "typescript": "^5.0.0"
+  },
+  "build": {
+    "appId": "com.example.electronapp",
+    "productName": "MyElectronApp",
+    "directories": {
+      "output": "dist_electron"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "snap"
+      ],
+      "category": "Utility",
+      "maintainer": "อาม Dev🔥",
+      "description": "An Electron + Vite app"
+    }
+  }
+}
